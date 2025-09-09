@@ -338,7 +338,6 @@
             }
         }
     }
-    document.addEventListener('DOMContentLoaded', InjectedScript);
     //]]>
     <\/script>
 </body>
@@ -504,28 +503,22 @@
         if (!el) return;
 
         const fieldWrapper = document.createElement('div');
+        const label = document.createElement('label');
+        label.className = 'block font-semibold text-gray-300 mb-1';
+        label.textContent = config.label;
 
-        let mainInput;
+        let input;
 
         if (config.type === 'text') {
-            const label = document.createElement('label');
-            label.className = 'block font-semibold text-gray-300 mb-1';
-            label.textContent = config.label;
-            mainInput = document.createElement('textarea');
-            mainInput.value = el.textContent;
-            mainInput.rows = el.tagName.toLowerCase().startsWith('h') ? 3 : 2;
-            mainInput.addEventListener('input', () => { el.textContent = mainInput.value; });
-            fieldWrapper.appendChild(label);
-            fieldWrapper.appendChild(mainInput);
-
+            input = document.createElement('textarea');
+            input.value = el.textContent;
+            input.rows = el.tagName.toLowerCase().startsWith('h') ? 3 : 2;
+            input.addEventListener('input', () => { el.textContent = input.value; });
         } else if (config.type === 'src') {
-            const label = document.createElement('label');
-            label.className = 'block font-semibold text-gray-300 mb-1';
-            label.textContent = config.label;
-            mainInput = document.createElement('input');
-            mainInput.type = 'text';
-            mainInput.value = el.src;
-            mainInput.addEventListener('input', (e) => {
+            input = document.createElement('input');
+            input.type = 'text';
+            input.value = el.src;
+            input.addEventListener('input', (e) => {
                 el.src = e.target.value;
                 // --- SYNC CAROUSEL CLONE ---
                 if (elementId.startsWith('logo-client-')) {
@@ -536,31 +529,12 @@
                     }
                 }
             });
-            fieldWrapper.appendChild(label);
-            fieldWrapper.appendChild(mainInput);
         }
 
+        fieldWrapper.appendChild(label);
+        fieldWrapper.appendChild(input);
         fieldsContainer.appendChild(fieldWrapper);
-        mainInput.focus();
-
-        // If the element is a link, add a second field for the URL
-        if (el.tagName === 'A') {
-            const linkFieldWrapper = document.createElement('div');
-            const linkLabel = document.createElement('label');
-            linkLabel.className = 'block font-semibold text-gray-300 mb-1 mt-4';
-            linkLabel.textContent = 'Enlace URL';
-
-            const linkInput = document.createElement('input');
-            linkInput.type = 'text';
-            linkInput.value = el.getAttribute('href');
-            linkInput.addEventListener('input', (e) => {
-                el.setAttribute('href', e.target.value);
-            });
-
-            linkFieldWrapper.appendChild(linkLabel);
-            linkFieldWrapper.appendChild(linkInput);
-            fieldsContainer.appendChild(linkFieldWrapper);
-        }
+        input.focus();
     }
 
     function setupEditor() {
@@ -598,7 +572,7 @@
                     el.setAttribute('data-editable-id', id);
                     el.addEventListener('click', (e) => {
                         e.preventDefault();
-                        //e.stopPropagation(); // Removed to allow parent events to fire
+                        // e.stopPropagation(); // This was the bug for the accordion
                         if(currentSelected) {
                             currentSelected.classList.remove('--selected');
                         }
@@ -663,12 +637,13 @@
              };
 
              const config = editableElementsConfig[id];
+             const contentType = previewEl.tagName.toLowerCase() === 'span' ? 'textContent' : 'innerHTML';
 
              if(config.type === 'text') {
-                templateEl.textContent = previewEl.textContent;
-                if (templateEl.tagName === 'A') {
-                    templateEl.setAttribute('href', previewEl.getAttribute('href'));
+                while (templateEl.firstChild) {
+                    templateEl.removeChild(templateEl.firstChild);
                 }
+                templateEl.appendChild(finalDoc.createTextNode(previewEl[contentType]));
              } else if (config.type === 'src') {
                 templateEl.setAttribute('src', previewEl.getAttribute('src'));
              }
