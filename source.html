@@ -51,7 +51,7 @@
                 <h1 class="text-2xl font-bold text-white">Editor Visual de Blogger</h1>
                 <p class="text-sm text-gray-400">¡La herramienta para revivir Blogger!</p>
             </div>
-            
+
             <div class="text-gray-300 space-y-4 text-sm">
                 <h2 class="font-semibold text-lg border-b border-gray-600 pb-2">Instrucciones</h2>
                 <p><span class="font-bold text-primary">1. Selecciona:</span> Haz clic en cualquier elemento resaltado en la vista previa para empezar a editarlo.</p>
@@ -114,7 +114,7 @@
             --primary: 234 88 12; /* #ea580c */
             --border: 40 40 40; /* #282828 */
         }
-        
+
         .bg-background { background-color: rgb(var(--background)); }
         .text-foreground { color: rgb(var(--foreground)); }
         .text-primary { color: rgb(var(--primary)); }
@@ -122,7 +122,7 @@
         .border-border { border-color: rgb(var(--border)); }
         .border-primary { border-color: rgb(var(--primary)); }
         body { font-family: 'Inter', sans-serif; }
-        
+
         .custom-nav-link { color: rgb(255, 255, 255); font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.04px; transition: color 0.2s; }
         .custom-nav-link:hover { color: rgb(var(--primary)); }
 
@@ -131,13 +131,13 @@
         .logo-carousel .logo-slide { width: 200px; padding: 0 40px; flex-shrink: 0; filter: grayscale(1) brightness(1.5); transition: filter 0.3s; }
         .logo-carousel:hover .logo-track { animation-play-state: paused; }
         .logo-carousel .logo-slide:hover { filter: grayscale(0) brightness(1); }
-        
+
         .accordion-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-in-out; }
         .accordion-item.active .accordion-content { max-height: 200px; padding-top: 1rem; padding-bottom: 1rem; }
         .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
-        
+
         .tab-button.active { border-color: rgb(var(--primary)); color: rgb(var(--primary)); }
-        
+
         #video-overlay {
             cursor: pointer;
             transition: opacity 0.3s ease;
@@ -146,7 +146,7 @@
 </head>
 
 <body class='bg-background text-foreground'>
-    
+
     <header class='border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50'>
         <div class='container mx-auto px-4 py-4'>
             <nav class='flex items-center justify-between'>
@@ -198,7 +198,7 @@
             <b:includable id='main'><data:posts/></b:includable>
           </b:widget>
         </b:section>
-        
+
         <section class='py-20 px-4'>
             <div class='container mx-auto text-center'>
                 <div class='max-w-4xl mx-auto'>
@@ -221,7 +221,7 @@
         <section class='bg-white text-gray-900 py-20 px-4'><div class='container mx-auto'><header class='text-center mb-12'><h2 id='tabs-section-title' class='text-5xl font-bold'>Engaging AI Avatars for any team</h2></header><div id='tabs-container'><div class='flex flex-wrap justify-center gap-4 mb-12'><button class='tab-button flex items-center gap-2 px-4 py-2 border-b-2 font-medium transition-colors active' data-target='tab-1'><img class='w-5 h-5' src='https://www.d-id.com/wp-content/uploads/2024/09/crowdsource.svg'/><span id='tab-button-1'>Marketing</span></button><button class='tab-button flex items-center gap-2 px-4 py-2 border-b-2 border-transparent font-medium transition-colors' data-target='tab-2'><img class='w-5 h-5' src='https://www.d-id.com/wp-content/uploads/2024/09/clear_all.svg'/><span id='tab-button-2'>Content creators</span></button></div><div id='tab-panels'><div class='tab-panel grid grid-cols-1 md:grid-cols-2 gap-12 items-center' id='tab-1'><div class='text-left'><h3 id='tab-title-1' class='text-3xl font-bold mb-4'>Marketing</h3><p id='tab-desc-1' class='text-gray-600 mb-6'>Boost performance across the marketing funnel by using AI Avatars for personalized video content at scale in any language or employ interactive Agents to nurture engagement.</p><a id='tab-link-1' class='text-primary font-bold hover:underline' href='#'>Learn more &#8594;</a></div><div><img id='tab-image-1' class='rounded-lg shadow-lg w-full' src='https://www.d-id.com/wp-content/uploads/2024/09/Marketing-1.png'/></div></div><div class='tab-panel hidden grid-cols-1 md:grid-cols-2 gap-12 items-center' id='tab-2'><div class='text-left'><h3 id='tab-title-2' class='text-3xl font-bold mb-4'>Content Creators</h3><p id='tab-desc-2' class='text-gray-600 mb-6'>Scale up your video production with a digital twin who can say whatever you want in any language you choose. Train an agent on your content and enable 24/7 personal engagement with your community.</p><a id='tab-link-2' class='text-primary font-bold hover:underline' href='#'>Learn more &#8594;</a></div><div><img id='tab-image-2' class='rounded-lg shadow-lg w-full' src='https://www.d-id.com/wp-content/uploads/2024/09/Content-creators.png'/></div></div></div></div></div></section>
         <section class='h-48' style='background-image: url(&apos;https://www.d-id.com/wp-content/uploads/2023/10/bg-dots-orange.svg&apos;); background-repeat: repeat;'></section>
     </main>
-    
+
     <footer class='bg-background border-t border-border py-8 px-4'>
         <div class='container mx-auto text-center text-gray-500'>
             <div class='flex justify-center space-x-6 mb-4'>
@@ -247,7 +247,7 @@
         </b:includable>
       </b:widget>
     </b:section>
-    
+
     <script>
     //<![CDATA[
     function InjectedScript() {
@@ -264,7 +264,7 @@
                 iconClose.classList.toggle('hidden');
             });
         }
-        
+
         // Acordeon
         const accordionContainer = document.getElementById('accordion-container');
         if (accordionContainer) {
@@ -277,11 +277,11 @@
                 const currentItem = header.parentElement;
                 const targetVideoId = currentItem.getAttribute('data-target');
                 accordionItems.forEach(item => {
-                    if (item === currentItem) { item.classList.toggle('active'); } 
+                    if (item === currentItem) { item.classList.toggle('active'); }
                     else { item.classList.remove('active'); }
                 });
                 videoContainers.forEach(video => {
-                    if (video.id === targetVideoId) { video.classList.remove('hidden'); } 
+                    if (video.id === targetVideoId) { video.classList.remove('hidden'); }
                     else { video.classList.add('hidden'); }
                 });
             });
@@ -316,7 +316,7 @@
             try {
                 const player = new Vimeo.Player(videoIframe);
                 const overlay = document.getElementById('video-overlay');
-                
+
                 overlay.addEventListener('click', function() {
                     player.setMuted(false);
                     player.setVolume(0.7);
@@ -402,7 +402,7 @@
     const generateBtn = document.getElementById('generate-btn');
     const loader = document.getElementById('loader');
     const fieldsContainer = document.getElementById('fields-container');
-    
+
     // This is the function that runs inside the iframe
     const InjectedScript = function() {
         // Menu movil
@@ -418,7 +418,7 @@
                 iconClose.classList.toggle('hidden');
             });
         }
-        
+
         // Acordeon
         const accordionContainer = document.getElementById('accordion-container');
         if (accordionContainer) {
@@ -431,11 +431,11 @@
                 const currentItem = header.parentElement;
                 const targetVideoId = currentItem.getAttribute('data-target');
                 accordionItems.forEach(item => {
-                    if (item === currentItem) { item.classList.toggle('active'); } 
+                    if (item === currentItem) { item.classList.toggle('active'); }
                     else { item.classList.remove('active'); }
                 });
                 videoContainers.forEach(video => {
-                    if (video.id === targetVideoId) { video.classList.remove('hidden'); } 
+                    if (video.id === targetVideoId) { video.classList.remove('hidden'); }
                     else { video.classList.add('hidden'); }
                 });
             });
@@ -470,7 +470,7 @@
             try {
                 const player = new Vimeo.Player(videoIframe);
                 const overlay = document.getElementById('video-overlay');
-                
+
                 overlay.addEventListener('click', function() {
                     player.setMuted(false);
                     player.setVolume(0.7);
@@ -498,7 +498,7 @@
         const config = editableElementsConfig[elementId];
         if (!config) return;
 
-        fieldsContainer.innerHTML = ''; 
+        fieldsContainer.innerHTML = '';
         const el = iframeDoc.getElementById(elementId);
         if (!el) return;
 
@@ -506,24 +506,23 @@
         const label = document.createElement('label');
         label.className = 'block font-semibold text-gray-300 mb-1';
         label.textContent = config.label;
-        
+
         let input;
-        const contentType = el.tagName.toLowerCase() === 'span' ? 'textContent' : 'innerHTML';
-        
+
         if (config.type === 'text') {
             input = document.createElement('textarea');
-            input.value = el[contentType];
+            input.value = el.textContent;
             input.rows = el.tagName.toLowerCase().startsWith('h') ? 3 : 2;
-            input.addEventListener('input', () => { el[contentType] = input.value; });
+            input.addEventListener('input', () => { el.textContent = input.value; });
         } else if (config.type === 'src') {
             input = document.createElement('input');
             input.type = 'text';
             input.value = el.src;
-            input.addEventListener('input', (e) => { 
-                el.src = e.target.value; 
+            input.addEventListener('input', (e) => {
+                el.src = e.target.value;
                 // --- SYNC CAROUSEL CLONE ---
-                if (id.startsWith('logo-client-')) {
-                    const cloneId = id + '-clone';
+                if (elementId.startsWith('logo-client-')) {
+                    const cloneId = elementId + '-clone';
                     const cloneEl = iframeDoc.getElementById(cloneId);
                     if (cloneEl) {
                         cloneEl.src = e.target.value;
@@ -531,7 +530,7 @@
                 }
             });
         }
-        
+
         fieldWrapper.appendChild(label);
         fieldWrapper.appendChild(input);
         fieldsContainer.appendChild(fieldWrapper);
@@ -564,7 +563,7 @@
                 }
             `;
             iframeDoc.head.appendChild(style);
-            
+
             let currentSelected = null;
 
             Object.keys(editableElementsConfig).forEach(id => {
@@ -583,17 +582,17 @@
                     });
                 }
             });
-            
+
             loader.style.display = 'none';
         } catch (e) {
             console.error("Error setting up editor:", e);
             loader.innerHTML = "<p class='text-red-500 p-4'>Error loading preview.</p>";
         }
     }
-    
+
     window.addEventListener('load', () => {
         let previewHTML = templateXML;
-        
+
         // Clean the template for browser rendering
         previewHTML = previewHTML.replace(/<\?xml[^>]*\?>\n?/, '');
         previewHTML = previewHTML.replace(/<html[^>]*>/, '<html>');
@@ -613,7 +612,7 @@
         const scriptTag = iframeDoc.createElement('script');
         scriptTag.textContent = `(${InjectedScript.toString()})();`;
         iframeDoc.body.appendChild(scriptTag);
-        
+
         setupEditor();
     });
 
@@ -631,20 +630,16 @@
              const previewEl = iframeDoc.getElementById(id);
              // Use querySelector for robustness with XML docs
              const templateEl = finalDoc.querySelector(`*[id="${id}"]`);
-             
+
              if (!previewEl || !templateEl) {
                  console.warn(`Elemento no encontrado en vista previa o plantilla: ${id}`);
                  return;
              };
 
              const config = editableElementsConfig[id];
-             const contentType = previewEl.tagName.toLowerCase() === 'span' ? 'textContent' : 'innerHTML';
 
              if(config.type === 'text') {
-                while (templateEl.firstChild) {
-                    templateEl.removeChild(templateEl.firstChild);
-                }
-                templateEl.appendChild(finalDoc.createTextNode(previewEl[contentType]));
+                templateEl.textContent = previewEl.textContent;
              } else if (config.type === 'src') {
                 templateEl.setAttribute('src', previewEl.getAttribute('src'));
              }
@@ -662,10 +657,10 @@
                 }
             }
         }
-        
+
         const serializer = new XMLSerializer();
         let finalXML = serializer.serializeToString(finalDoc);
-        
+
         if (!finalXML.startsWith('<?xml')) {
             finalXML = `<?xml version="1.0" encoding="UTF-8" ?>\n` + finalXML;
         }
@@ -682,4 +677,3 @@
     </script>
 </body>
 </html>
-
