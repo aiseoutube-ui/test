@@ -598,7 +598,7 @@
                     el.setAttribute('data-editable-id', id);
                     el.addEventListener('click', (e) => {
                         e.preventDefault();
-                        e.stopPropagation();
+                        //e.stopPropagation(); // Removed to allow parent events to fire
                         if(currentSelected) {
                             currentSelected.classList.remove('--selected');
                         }
