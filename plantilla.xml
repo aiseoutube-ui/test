@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr" b:css="false" b:layoutsVersion="3" b:responsive="true" b:templateVersion="1.3.0" expr:dir="data:blog.languageDirection" lang="es">
+
+<head>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <b:include data="blog" name="all-head-content"/>
+    <title><data:blog.pageTitle/></title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+
+    <b:skin><![CDATA[
+        /* === CÓDIGO PARA OCULTAR LA PLANTILLA DE BLOGGER === */
+        .main.popularPost, .page_body .centered > #footer, #comments, header.centered-top-container, .post-title, .post-share-buttons, .bg-photo-container, .bg-photo-overlay, .sidebar-container, .centered-top {
+          display: none !important;
+        }
+        .post-body, .page_body .widget, .Blog .blog-posts .post-outer-container, .page_body .centered {
+            margin: 0 !important; padding: 0 !important; max-width: 100% !important; width: 100% !important; background: none !important; border: none !important;
+        }
+        html, body { margin: 0 !important; padding: 0 !important; }
+
+        /* === PALETA DE COLORES (TEMA OSCURO #0a0603) === */
+        :root {
+            --background: 10 6 3; /* #0a0603 */
+            --foreground: 226 232 240; /* #e2e8f0 */
+            --primary: 234 88 12; /* #ea580c */
+            --border: 40 40 40; /* #282828 */
+        }
+        
+        .bg-background { background-color: rgb(var(--background)); }
+        .text-foreground { color: rgb(var(--foreground)); }
+        .text-primary { color: rgb(var(--primary)); }
+        .bg-primary { background-color: rgb(var(--primary)); }
+        .border-border { border-color: rgb(var(--border)); }
+        .border-primary { border-color: rgb(var(--primary)); }
+        body { font-family: 'Inter', sans-serif; }
+        
+        .custom-nav-link { color: rgb(255, 255, 255); font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.04px; transition: color 0.2s; }
+        .custom-nav-link:hover { color: rgb(var(--primary)); }
+
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .logo-carousel .logo-track { display: flex; width: calc(200px * 14); animation: scroll 40s linear infinite; }
+        .logo-carousel .logo-slide { width: 200px; padding: 0 40px; flex-shrink: 0; filter: grayscale(1) brightness(1.5); transition: filter 0.3s; }
+        .logo-carousel:hover .logo-track { animation-play-state: paused; }
+        .logo-carousel .logo-slide:hover { filter: grayscale(0) brightness(1); }
+        
+        /* === ACORDEÓN MEJORADO === */
+        .accordion-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+            opacity: 0;
+        }
+        .accordion-item.active .accordion-content { 
+            max-height: 250px; 
+            padding-top: 1rem; 
+            padding-bottom: 1rem; 
+            opacity: 1;
+        }
+        .accordion-item.active .accordion-arrow { 
+            transform: rotate(180deg); 
+        }
+        .accordion-arrow { 
+            transition: transform 0.3s ease; 
+        }
+        .accordion-header:hover { 
+            color: rgb(var(--primary)); 
+        }
+        
+        /* === TABS MEJORADAS === */
+        .tab-button { 
+            transition: all 0.3s ease; 
+            border-bottom: 2px solid transparent;
+        }
+        .tab-button.active { 
+            border-color: rgb(var(--primary)); 
+            color: rgb(var(--primary)); 
+        }
+        .tab-button:hover:not(.active) { 
+            color: rgba(234, 88, 12, 0.7); 
+        }
+        
+        /* === MENÚ MÓVIL MEJORADO === */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu:not(.hidden) {
+            max-height: 400px;
+        }
+        
+        #video-overlay {
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+    ]]></b:skin>
+</head>
+
+<body class="bg-background text-foreground">
+    
+    <header class="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <nav class="flex items-center justify-between">
+                <div class="flex-shrink-0"><a href="#"><img id="logo-main" alt="The Last ART Logo" class="h-10 w-auto" src="https://www.d-id.com/wp-content/uploads/2023/11/d-id-logo.svg" /></a></div>
+                <div class="hidden lg:flex lg:items-center lg:space-x-8">
+                    <a id="nav-link-1" class="custom-nav-link" href="https://github.com/aiseoutube-ui/test/blob/main/source.html">Produzzcts</a>
+                    <a id="nav-link-2" class="custom-nav-link" href="https://github.com/aiseoutube-ui/test/blob/main/source.html">344444</a>
+                    <a id="nav-link-3" class="custom-nav-link" href="#">Technology</a>
+                    <a id="nav-link-4" class="custom-nav-link" href="#">Ethics</a>
+                    <a id="nav-link-5" class="custom-nav-link" href="#">Pricing</a>
+                    <a id="nav-link-6" class="custom-nav-link" href="#">Company</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a id="nav-button-1" class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 border border-primary text-primary hover:bg-primary hover:text-white transition-colors uppercase tracking-wider" href="#">Contact Sales</a>
+                    <a id="nav-button-2" class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-primary hover:opacity-90 text-white transition-all uppercase tracking-wider" href="#">Start Free Trial</a>
+                    <a id="nav-login" class="custom-nav-link" href="#">Log in</a>
+                </div>
+                <div class="-mr-2 flex lg:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="block h-6 w-6" id="icon-open" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" id="icon-close" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+         <div class="hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a id="mobile-nav-link-1" href="#products" class="custom-nav-link block px-3 py-2 rounded-md text-base font-medium">Products</a>
+                <a id="mobile-nav-link-2" href="#" class="custom-nav-link block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
+                <a id="mobile-nav-link-3" href="#" class="custom-nav-link block px-3 py-2 rounded-md text-base font-medium">Technology</a>
+                <a id="mobile-nav-link-4" href="#" class="custom-nav-link block px-3 py-2 rounded-md text-base font-medium">Ethics</a>
+                <a id="mobile-nav-link-5" href="#" class="custom-nav-link block px-3 py-2 rounded-md text-base font-medium">Pricing</a>
+                <a id="mobile-nav-link-6" href="#" class="custom-nav-link block px-3 py-2 rounded-md text-base font-medium">Company</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <b:section class="main" id="main" showaddelement="no">
+          <b:widget id="Blog1" locked="true" title="Blog Posts" type="Blog" version="2" visible="true">
+            <b:widget-settings>
+              <b:widget-setting name="showDateHeader">false</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id="main"><data:posts/></b:includable>
+          </b:widget>
+        </b:section>
+        
+        <section class="py-20 px-4">
+            <div class="container mx-auto text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h2 id="hero-title" class="text-5xl md:text-6xl font-bold text-foreground mb-6">Custom AI-powered Digital People at Scale for Businesses and Builders</h2>
+                    <div class="flex justify-center mb-12">
+                        <a id="hero-button" class="inline-flex items-center justify-center rounded-md text-lg font-medium h-12 px-8 bg-primary hover:opacity-90 text-white transition-all transform hover:-translate-y-1 hover:shadow-lg" href="#">GET STARTED</a>
+                    </div>
+                </div>
+                <div class="relative w-full max-w-7xl mx-auto rounded-lg overflow-hidden shadow-2xl shadow-primary/20 border-2 border-border aspect-video mt-16">
+                    <iframe id="hero-video" class="w-full h-full" src="https://player.vimeo.com/video/1026817901?muted=1&amp;autoplay=1&amp;controls=0&amp;loop=1&amp;app_id=122963" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="true" title="Welcome to D-ID"></iframe>
+                    <div id="video-overlay" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                        <svg class="w-20 h-20 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-16"><div class="container mx-auto"><p id="trustedby-title" class="text-center text-gray-400 text-sm font-bold tracking-widest uppercase mb-8">TRUSTED BY</p><div class="logo-carousel relative overflow-hidden w-full h-16"><div class="logo-track"><div class="logo-slide"><img id="logo-client-1" alt="Microsoft" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Microsoft_logo.svg" /></div><div class="logo-slide"><img id="logo-client-2" alt="Reddit" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Reddit.svg/320px-Reddit.svg.png" /></div><div class="logo-slide"><img id="logo-client-3" alt="Shell" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Shell_logo.svg/320px-Shell_logo.svg.png" /></div><div class="logo-slide"><img id="logo-client-4" alt="Wayfair" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Wayfair_logo_2020.svg/320px-Wayfair_logo_2020.svg.png" /></div><div class="logo-slide"><img id="logo-client-5" alt="Singtel" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Singtel_logo.svg/320px-Singtel_logo.svg.png" /></div><div class="logo-slide"><img id="logo-client-6" alt="Cisco" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Cisco_logo_blue_2016.svg/320px-Cisco_logo_blue_2016.svg.png" /></div><div class="logo-slide"><img id="logo-client-7" alt="Amazon" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/320px-Amazon_logo.svg.png" /></div><div class="logo-slide"><img id="logo-client-1-clone" alt="Microsoft" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Microsoft_logo.svg" /></div><div class="logo-slide"><img id="logo-client-2-clone" alt="Reddit" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Reddit.svg/320px-Reddit.svg.png" /></div><div class="logo-slide"><img id="logo-client-3-clone" alt="Shell" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Shell_logo.svg/320px-Shell_logo.svg.png" /></div><div class="logo-slide"><img id="logo-client-4-clone" alt="Wayfair" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Wayfair_logo_2020.svg/320px-Wayfair_logo_2020.svg.png" /></div><div class="logo-slide"><img id="logo-client-5-clone" alt="Singtel" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Singtel_logo.svg/320px-Singtel_logo.svg.png" /></div><div class="logo-slide"><img id="logo-client-6-clone" alt="Cisco" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Cisco_logo_blue_2016.svg/320px-Cisco_logo_blue_2016.svg.png" /></div><div class="logo-slide"><img id="logo-client-7-clone" alt="Amazon" class="h-8 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/320px-Amazon_logo.svg.png" /></div></div></div></div></section>
+        <section class="py-20 px-4" id="products"><div class="container mx-auto"><header class="text-center mb-16"><h2 id="products-title" class="text-5xl font-bold text-foreground">Experience our products</h2></header><div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"><div class="w-full flex flex-col space-y-4" id="accordion-container"><div class="accordion-item border-b border-border pb-4 active" data-target="video-1"><div class="accordion-header flex justify-between items-center cursor-pointer"><h3 id="accordion-title-1" class="text-2xl font-medium text-foreground">zzzz</h3><svg class="accordion-arrow w-6 h-6 text-foreground transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div class="accordion-content"><p id="accordion-desc-1" class="text-gray-400 mb-4">Redefining digital connections. Craft a lifelike conversational AI Agent that knows everything about you, your products, and services.</p><a id="accordion-link-1" class="text-primary font-semibold hover:underline" href="#">Build an Agent →</a></div></div><div class="accordion-item border-b border-border pb-4" data-target="video-2"><div class="accordion-header flex justify-between items-center cursor-pointer"><h3 id="accordion-title-2" class="text-2xl font-medium text-foreground">zzzzz</h3><svg class="accordion-arrow w-6 h-6 text-foreground transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div class="accordion-content"><p id="accordion-desc-2" class="text-gray-400 mb-4">Create AI Avatars from a photo or video. This AI-powered animation tool turns static photos and moving videos into dynamic, lifelike Avatars.</p><a id="accordion-link-2" class="text-primary font-semibold hover:underline" href="#">Create a video →</a></div></div><div class="accordion-item border-b border-border pb-4" data-target="video-3"><div class="accordion-header flex justify-between items-center cursor-pointer"><h3 id="accordion-title-3" class="text-2xl font-medium text-foreground">Video Translate</h3><svg class="accordion-arrow w-6 h-6 text-foreground transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div class="accordion-content"><p id="accordion-desc-3" class="text-gray-400 mb-4">Speak your audience's language, no matter where they are. Automatically bulk translate videos into multiple languages with just a few clicks.</p><a id="accordion-link-3" class="text-primary font-semibold hover:underline" href="#">Translate a video →</a></div></div><div class="accordion-item border-b border-border pb-4" data-target="video-4"><div class="accordion-header flex justify-between items-center cursor-pointer"><h3 id="accordion-title-4" class="text-2xl font-medium text-foreground">Video Campaigns</h3><svg class="accordion-arrow w-6 h-6 text-foreground transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div class="accordion-content"><p id="accordion-desc-4" class="text-gray-400 mb-4">Make every message count using tailored video interactions. Transform your email marketing outreach with personalized, scalable video campaigns.</p><a id="accordion-link-4" class="text-primary font-semibold hover:underline" href="#">Create a campaign →</a></div></div></div><div class="w-full" id="video-display-area"><div class="video-container rounded-lg overflow-hidden shadow-2xl aspect-video" id="video-1"><iframe id="product-video-1" allow="autoplay; fullscreen" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://player.vimeo.com/video/1011021743?h=cdee2fa504&amp;controls=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"></iframe></div><div class="video-container rounded-lg overflow-hidden shadow-2xl aspect-video hidden" id="video-2"><iframe id="product-video-2" allow="autoplay; fullscreen" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://player.vimeo.com/video/1010942017?h=475af40bcd&amp;controls=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"></iframe></div><div class="video-container rounded-lg overflow-hidden shadow-2xl aspect-video hidden" id="video-3"><iframe id="product-video-3" allow="autoplay; fullscreen" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://player.vimeo.com/video/1010941681?h=7a92ff40ce&amp;controls=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"></iframe></div><div class="video-container rounded-lg overflow-hidden shadow-2xl aspect-video hidden" id="video-4"><iframe id="product-video-4" allow="autoplay; fullscreen" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://player.vimeo.com/video/1010941259?h=e851ef64d1&amp;controls=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"></iframe></div></div></div></div></section>
+        <section class="py-20 px-4" id="api"><div class="container mx-auto"><div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"><div class="flex flex-col space-y-6"><span id="api-tag" class="text-sm font-bold uppercase text-primary tracking-wider">API</span><h2 id="api-title" class="text-5xl font-bold text-foreground">Real-time streaming animation</h2><p id="api-desc" class="text-xl text-gray-400">Integrate D-ID's advanced AI features into your app or platform with ease.</p><div><a id="api-button" class="inline-flex items-center justify-center rounded-md text-lg font-medium h-12 px-8 bg-primary hover:opacity-90 text-white transition-all transform hover:-translate-y-1 hover:shadow-lg" href="https://docs.d-id.com/reference/get-started" target="_blank">Read our documentation</a></div></div><div class="w-full rounded-lg overflow-hidden shadow-2xl aspect-video"><iframe id="api-video" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" class="w-full h-full" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://player.vimeo.com/video/890782138?h=a5b284d7a3&amp;app_id=122963" title="Real-Time AI Avatars with D-ID's Streaming API"></iframe></div></div></div></section>
+        <section class="bg-white text-gray-900 py-20 px-4"><div class="container mx-auto"><header class="text-center mb-12"><h2 id="tabs-section-title" class="text-5xl font-bold">Engaging AI Avatars for any team</h2></header><div id="tabs-container"><div class="flex flex-wrap justify-center gap-4 mb-12"><button class="tab-button flex items-center gap-2 px-4 py-2 border-b-2 font-medium transition-colors active" data-target="tab-1"><img class="w-5 h-5" src="https://www.d-id.com/wp-content/uploads/2024/09/crowdsource.svg" /><span id="tab-button-1">Marketing</span></button><button class="tab-button flex items-center gap-2 px-4 py-2 border-b-2 border-transparent font-medium transition-colors" data-target="tab-2"><img class="w-5 h-5" src="https://www.d-id.com/wp-content/uploads/2024/09/clear_all.svg" /><span id="tab-button-2">Content creators</span></button></div><div id="tab-panels"><div class="tab-panel grid grid-cols-1 md:grid-cols-2 gap-12 items-center" id="tab-1"><div class="text-left"><h3 id="tab-title-1" class="text-3xl font-bold mb-4">Marketing</h3><p id="tab-desc-1" class="text-gray-600 mb-6">Boost performance across the marketing funnel by using AI Avatars for personalized video content at scale in any language or employ interactive Agents to nurture engagement.</p><a id="tab-link-1" class="text-primary font-bold hover:underline" href="#">Learn more →</a></div><div><img id="tab-image-1" class="rounded-lg shadow-lg w-full" src="https://www.d-id.com/wp-content/uploads/2024/09/Marketing-1.png" /></div></div><div class="tab-panel hidden grid-cols-1 md:grid-cols-2 gap-12 items-center" id="tab-2"><div class="text-left"><h3 id="tab-title-2" class="text-3xl font-bold mb-4">Content Creators</h3><p id="tab-desc-2" class="text-gray-600 mb-6">Scale up your video production with a digital twin who can say whatever you want in any language you choose. Train an agent on your content and enable 24/7 personal engagement with your community.</p><a id="tab-link-2" class="text-primary font-bold hover:underline" href="#">Learn more →</a></div><div><img id="tab-image-2" class="rounded-lg shadow-lg w-full" src="https://www.d-id.com/wp-content/uploads/2024/09/Content-creators.png" /></div></div></div></div></div></section>
+        <section class="h-48" style="background-image: url('https://www.d-id.com/wp-content/uploads/2023/10/bg-dots-orange.svg'); background-repeat: repeat;"></section>
+    </main>
+    
+    <footer class="bg-background border-t border-border py-8 px-4">
+        <div class="container mx-auto text-center text-gray-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                 <a class="hover:text-primary" href="#"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.525 0 0 .525 0 1.175v21.65C0 23.475.525 24 1.175 24H12.825V14.7H9.138V11.387h3.687V8.71c0-3.65 2.238-5.637 5.475-5.637 1.55 0 2.887.113 3.275.163v2.962h-1.75c-1.775 0-2.113.838-2.113 2.075v2.725h3.325l-.438 3.313h-2.887V24h5.688c.65 0 1.175-.525 1.175-1.175V1.175C24 .525 23.325 0 22.675 0z"></path></svg></a>
+                 <a class="hover:text-primary" href="#"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.415 2.175 8.796 2.163 12 2.163zm0-1.625C8.74 0 8.333.012 7.053.072 2.695.272.273 2.69.073 7.052.013 8.333 0 8.74 0 12s.013 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.28.06 1.687.072 4.947.072s3.667-.013 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.06-1.28.072-1.687.072-4.947s-.012-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.013 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg></a>
+                 <a class="hover:text-primary" href="#"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 6.186a2.693 2.693 0 00-1.897-1.928C17.848 3.812 12 3.812 12 3.812s-5.848 0-7.685.446A2.693 2.693 0 002.418 6.186C1.968 7.965 1.968 12 1.968 12s0 4.035.45 5.814a2.693 2.693 0 001.897 1.928c1.837.446 7.685.446 7.685.446s5.848 0 7.685-.446a2.693 2.693 0 001.897-1.928c.45-1.779.45-5.814.45-5.814s0-4.035-.45-5.814zM10.106 15.46V8.54l5.244 3.46-5.244 3.46z"></path></svg></a>
+            </div>
+            <div class="text-sm mt-4">
+                <span id="footer-copyright">© 2025 D-ID AI Video. All Rights Reserved.</span>
+                 <a id="footer-link-1" class="ml-4 hover:text-primary" href="#">Privacy Policy</a>
+                 <a id="footer-link-2" class="ml-4 hover:text-primary" href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT OPTIMIZADO PARA BLOGGER ========== -->
+    <script><![CDATA[
+        // FUNCIÓN PRINCIPAL PARA BLOGGER - SIN CONFLICTOS
+        function initBloggerInteractions() {
+            // === MENÚ MÓVIL ===
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        iconOpen.classList.add('hidden');
+                        iconClose.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        iconOpen.classList.remove('hidden');
+                        iconClose.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // === ACORDEÓN MEJORADO ===
+            const accordionContainer = document.getElementById('accordion-container');
+            if (accordionContainer) {
+                const videoDisplayArea = document.getElementById('video-display-area');
+                const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+                const videoContainers = videoDisplayArea.querySelectorAll('.video-container');
+                
+                // Usar event delegation para evitar conflictos
+                accordionContainer.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const header = e.target.closest('.accordion-header');
+                    if (!header) return;
+                    
+                    const currentItem = header.closest('.accordion-item');
+                    const targetVideoId = currentItem.getAttribute('data-target');
+                    
+                    // Cerrar todos los acordeones excepto el actual
+                    accordionItems.forEach(function(item) {
+                        if (item === currentItem) {
+                            item.classList.toggle('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                    
+                    // Mostrar/ocultar videos correspondientes
+                    videoContainers.forEach(function(video) {
+                        if (video.id === targetVideoId && currentItem.classList.contains('active')) {
+                            video.classList.remove('hidden');
+                        } else {
+                            video.classList.add('hidden');
+                        }
+                    });
+                });
+            }
+
+            // === SISTEMA DE TABS MEJORADO ===
+            const tabsContainer = document.getElementById('tabs-container');
+            if (tabsContainer) {
+                const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+                const tabPanels = tabsContainer.querySelectorAll('.tab-panel');
+                
+                tabButtons.forEach(function(button) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const targetPanelId = this.getAttribute('data-target');
+                        
+                        // Actualizar botones
+                        tabButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Actualizar paneles
+                        tabPanels.forEach(function(panel) {
+                            if (panel.id === targetPanelId) {
+                                panel.classList.remove('hidden');
+                                panel.classList.add('grid');
+                            } else {
+                                panel.classList.add('hidden');
+                                panel.classList.remove('grid');
+                            }
+                        });
+                    });
+                });
+            }
+
+            // === VIDEO INTERACTIVO CON VIMEO ===
+            const videoIframe = document.getElementById('hero-video');
+            if (videoIframe && window.Vimeo) {
+                try {
+                    const player = new Vimeo.Player(videoIframe);
+                    const overlay = document.getElementById('video-overlay');
+                    
+                    if (overlay) {
+                        overlay.addEventListener('click', function() {
+                            player.setMuted(false);
+                            player.setVolume(0.7);
+                            player.play();
+                            overlay.style.opacity = '0';
+                            player.setControls(true);
+                        });
+
+                        player.on('pause', function() {
+                            overlay.style.opacity = '1';
+                        });
+                        
+                        player.on('ended', function() {
+                            overlay.style.opacity = '1';
+                        });
+                    }
+                } catch (e) {
+                    console.warn("Vimeo Player no disponible:", e);
+                }
+            }
+        }
+
+        // === INICIALIZACIÓN SEGURA ===
+        function safeInit() {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initBloggerInteractions);
+            } else {
+                initBloggerInteractions();
+            }
+        }
+
+        // Ejecutar cuando esté listo
+        safeInit();
+    ]]></script>
+
+</body>
+</html>
