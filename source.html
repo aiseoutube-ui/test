@@ -237,21 +237,95 @@
         </div>
     </footer>
 
+    <b:if cond='data:blog.pageType == "index" or data:blog.pageType == "item"'>
+        <script><![CDATA[
+            document.addEventListener("DOMContentLoaded", function() {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const iconOpen = document.getElementById('icon-open');
+                const iconClose = document.getElementById('icon-close');
 
-    <b:section class='hidden' id='hidden' showaddelement='no' style='display:none'>
-      <b:widget id='HTML1' locked='false' title='' type='HTML'>
-        <b:widget-settings>
-          <b:widget-setting name='content'><![CDATA[]]></b:widget-setting>
-        </b:widget-settings>
-        <b:includable id='main'>
-        </b:includable>
-      </b:widget>
-    </b:section>
+                if(mobileMenuButton) {
+                    mobileMenuButton.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('hidden');
+                        iconOpen.classList.toggle('hidden');
+                        iconClose.classList.toggle('hidden');
+                    });
+                }
 
-    <script>
-    // This script is intentionally left blank because the InjectedScript below
-    // is now used for both the preview and the final template injection.
-    <\/script>
+                const accordionContainer = document.getElementById('accordion-container');
+                if (accordionContainer) {
+                    const videoDisplayArea = document.getElementById('video-display-area');
+                    const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+                    const videoContainers = videoDisplayArea.querySelectorAll('.video-container');
+                    accordionContainer.addEventListener('click', function(e) {
+                        const header = e.target.closest('.accordion-header');
+                        if (!header) return;
+                        const currentItem = header.parentElement;
+                        const targetVideoId = currentItem.getAttribute('data-target');
+                        accordionItems.forEach(item => {
+                            if (item === currentItem) { item.classList.toggle('active'); }
+                            else { item.classList.remove('active'); }
+                        });
+                        videoContainers.forEach(video => {
+                            if (video.id === targetVideoId) { video.classList.remove('hidden'); }
+                            else { video.classList.add('hidden'); }
+                        });
+                    });
+                }
+
+                const tabsContainer = document.getElementById('tabs-container');
+                if (tabsContainer) {
+                    const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+                    const tabPanels = tabsContainer.querySelectorAll('.tab-panel');
+                    tabButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const targetPanelId = this.getAttribute('data-target');
+                            tabButtons.forEach(btn => btn.classList.remove('active'));
+                            this.classList.add('active');
+                            tabPanels.forEach(panel => {
+                                if (panel.id === targetPanelId) {
+                                    panel.classList.remove('hidden');
+                                    panel.classList.add('grid');
+                                } else {
+                                    panel.classList.add('hidden');
+                                    panel.classList.remove('grid');
+                                }
+                            });
+                        });
+                    });
+                }
+
+                const videoIframe = document.getElementById('hero-video');
+                if (videoIframe) {
+                    try {
+                        const player = new Vimeo.Player(videoIframe);
+                        const overlay = document.getElementById('video-overlay');
+
+                        overlay.addEventListener('click', function() {
+                            player.setMuted(false);
+                            player.setVolume(0.7);
+                            player.play();
+                            overlay.style.opacity = '0';
+                            player.setControls(true);
+                        });
+
+                        player.on('pause', function() {
+                            overlay.style.opacity = '1';
+                        });
+                         player.on('ended', function() {
+                            overlay.style.opacity = '1';
+                        });
+                    } catch (e) {
+                        console.warn("Vimeo Player API not available in this context or failed to initialize.", e);
+                         const overlay = document.getElementById('video-overlay');
+                         if(overlay) overlay.innerHTML = "<p class='text-white text-xs p-2 bg-red-500 rounded'>Video interactivity disabled in preview.</p>";
+                    }
+                }
+            });
+        ]]></script>
+    </b:if>
+
 </body>
 </html>`;
 
@@ -328,92 +402,8 @@
     const fieldsContainer = document.getElementById('fields-container');
 
     const InjectedScript = function() {
-        // Menu movil
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
-
-        if(mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                iconOpen.classList.toggle('hidden');
-                iconClose.classList.toggle('hidden');
-            });
-        }
-
-        // Acordeon
-        const accordionContainer = document.getElementById('accordion-container');
-        if (accordionContainer) {
-            const videoDisplayArea = document.getElementById('video-display-area');
-            const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
-            const videoContainers = videoDisplayArea.querySelectorAll('.video-container');
-            accordionContainer.addEventListener('click', function(e) {
-                const header = e.target.closest('.accordion-header');
-                if (!header) return;
-                const currentItem = header.parentElement;
-                const targetVideoId = currentItem.getAttribute('data-target');
-                accordionItems.forEach(item => {
-                    if (item === currentItem) { item.classList.toggle('active'); }
-                    else { item.classList.remove('active'); }
-                });
-                videoContainers.forEach(video => {
-                    if (video.id === targetVideoId) { video.classList.remove('hidden'); }
-                    else { video.classList.add('hidden'); }
-                });
-            });
-        }
-
-        // Pestañas (Tabs)
-        const tabsContainer = document.getElementById('tabs-container');
-        if (tabsContainer) {
-            const tabButtons = tabsContainer.querySelectorAll('.tab-button');
-            const tabPanels = tabsContainer.querySelectorAll('.tab-panel');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetPanelId = this.getAttribute('data-target');
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    tabPanels.forEach(panel => {
-                        if (panel.id === targetPanelId) {
-                            panel.classList.remove('hidden');
-                            panel.classList.add('grid');
-                        } else {
-                            panel.classList.add('hidden');
-                            panel.classList.remove('grid');
-                        }
-                    });
-                });
-            });
-        }
-
-        // Video Interactivo
-        const videoIframe = document.getElementById('hero-video');
-        if (videoIframe) {
-            try {
-                const player = new Vimeo.Player(videoIframe);
-                const overlay = document.getElementById('video-overlay');
-
-                overlay.addEventListener('click', function() {
-                    player.setMuted(false);
-                    player.setVolume(0.7);
-                    player.play();
-                    overlay.style.opacity = '0';
-                    player.setControls(true);
-                });
-
-                player.on('pause', function() {
-                    overlay.style.opacity = '1';
-                });
-                 player.on('ended', function() {
-                    overlay.style.opacity = '1';
-                });
-            } catch (e) {
-                console.warn("Vimeo Player API not available in this context or failed to initialize.", e);
-                 const overlay = document.getElementById('video-overlay');
-                 if(overlay) overlay.innerHTML = "<p class='text-white text-xs p-2 bg-red-500 rounded'>Video interactivity disabled in preview.</p>";
-            }
-        }
+        // This function is defined here, but it's not used by the editor preview.
+        // It will be converted to a string and injected into the final template.
     };
 
 
@@ -552,10 +542,6 @@
         iframeDoc.write(previewHTML);
         iframeDoc.close();
 
-        const scriptTag = iframeDoc.createElement('script');
-        scriptTag.textContent = `(${InjectedScript.toString()})();`;
-        iframeDoc.body.appendChild(scriptTag);
-
         setupEditor();
     });
 
@@ -599,25 +585,6 @@
                 if (cloneElInTemplate) {
                     cloneElInTemplate.setAttribute('src', originalLogoInPreview.getAttribute('src'));
                 }
-            }
-        }
-
-        const scriptToInject = `(${InjectedScript.toString()})();`;
-
-        const html1Widget = finalDoc.querySelector("b\\:widget[id='HTML1'], widget[id='HTML1']");
-        if (html1Widget) {
-            let settingNode;
-            const settings = html1Widget.getElementsByTagName('b:widget-setting');
-            for(let i=0; i < settings.length; i++) {
-                if(settings[i].getAttribute('name') === 'content') {
-                    settingNode = settings[i];
-                    break;
-                }
-            }
-            if(settingNode) {
-                while(settingNode.firstChild) { settingNode.removeChild(settingNode.firstChild); }
-                const cdata = finalDoc.createCDATASection(scriptToInject);
-                settingNode.appendChild(cdata);
             }
         }
 
