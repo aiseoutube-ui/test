@@ -323,7 +323,7 @@
                     }
                 }
             });
-        ]]></script>
+        ]]><\/script>
     </b:if>
 
 </body>
@@ -401,9 +401,94 @@
     const loader = document.getElementById('loader');
     const fieldsContainer = document.getElementById('fields-container');
 
-    const InjectedScript = function() {
-        // This function is defined here, but it's not used by the editor preview.
-        // It will be converted to a string and injected into the final template.
+    // This function is for the editor's preview functionality
+    const previewScript = function() {
+        // Menu movil
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        if(mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+            });
+        }
+
+        // Acordeon
+        const accordionContainer = document.getElementById('accordion-container');
+        if (accordionContainer) {
+            const videoDisplayArea = document.getElementById('video-display-area');
+            const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+            const videoContainers = videoDisplayArea.querySelectorAll('.video-container');
+            accordionContainer.addEventListener('click', function(e) {
+                const header = e.target.closest('.accordion-header');
+                if (!header) return;
+                const currentItem = header.parentElement;
+                const targetVideoId = currentItem.getAttribute('data-target');
+                accordionItems.forEach(item => {
+                    if (item === currentItem) { item.classList.toggle('active'); }
+                    else { item.classList.remove('active'); }
+                });
+                videoContainers.forEach(video => {
+                    if (video.id === targetVideoId) { video.classList.remove('hidden'); }
+                    else { video.classList.add('hidden'); }
+                });
+            });
+        }
+
+        // Pestañas (Tabs)
+        const tabsContainer = document.getElementById('tabs-container');
+        if (tabsContainer) {
+            const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+            const tabPanels = tabsContainer.querySelectorAll('.tab-panel');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetPanelId = this.getAttribute('data-target');
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    tabPanels.forEach(panel => {
+                        if (panel.id === targetPanelId) {
+                            panel.classList.remove('hidden');
+                            panel.classList.add('grid');
+                        } else {
+                            panel.classList.add('hidden');
+                            panel.classList.remove('grid');
+                        }
+                    });
+                });
+            });
+        }
+
+        // Video Interactivo
+        const videoIframe = document.getElementById('hero-video');
+        if (videoIframe) {
+            try {
+                const player = new Vimeo.Player(videoIframe);
+                const overlay = document.getElementById('video-overlay');
+
+                overlay.addEventListener('click', function() {
+                    player.setMuted(false);
+                    player.setVolume(0.7);
+                    player.play();
+                    overlay.style.opacity = '0';
+                    player.setControls(true);
+                });
+
+                player.on('pause', function() {
+                    overlay.style.opacity = '1';
+                });
+                 player.on('ended', function() {
+                    overlay.style.opacity = '1';
+                });
+            } catch (e) {
+                console.warn("Vimeo Player API not available in this context or failed to initialize.", e);
+                 const overlay = document.getElementById('video-overlay');
+                 if(overlay) overlay.innerHTML = "<p class='text-white text-xs p-2 bg-red-500 rounded'>Video interactivity disabled in preview.</p>";
+            }
+        }
     };
 
 
@@ -532,7 +617,7 @@
         previewHTML = previewHTML.replace(/<\?xml[^>]*\?>\n?/, '');
         previewHTML = previewHTML.replace(/<html[^>]*>/, '<html>');
         previewHTML = previewHTML.replace(/<b:skin><!\[CDATA\[/, '<style>');
-        previewHTML = previewHTML.replace(/\]\]><\/b:skin>/, '</style>');
+        previewHTML = previewHTML.replace(/\]\]><\/b:skin>/, '<\/style>');
         previewHTML = previewHTML.replace(/<b:section[^>]*>[\s\S]*?<\/b:section>/g, '');
         previewHTML = previewHTML.replace(/<b:includable[^>]*>[\s\S]*?<\/b:includable>/g, '');
         previewHTML = previewHTML.replace(/<b:widget-settings>[\s\S]*?<\/b:widget-settings>/g, '');
@@ -541,6 +626,10 @@
         iframeDoc.open();
         iframeDoc.write(previewHTML);
         iframeDoc.close();
+
+        const scriptTag = iframeDoc.createElement('script');
+        scriptTag.textContent = `(${previewScript.toString()})();`;
+        iframeDoc.body.appendChild(scriptTag);
 
         setupEditor();
     });
