@@ -338,7 +338,6 @@
             }
         }
     }
-    document.addEventListener('DOMContentLoaded', InjectedScript);
     //]]>
     <\/script>
 </body>
@@ -666,11 +665,13 @@
 
              if(config.type === 'text') {
                 templateEl.textContent = previewEl.textContent;
-                if (templateEl.tagName === 'A') {
-                    templateEl.setAttribute('href', previewEl.getAttribute('href'));
-                }
              } else if (config.type === 'src') {
                 templateEl.setAttribute('src', previewEl.getAttribute('src'));
+             }
+
+             // Handle links separately to ensure href is always updated
+             if (previewEl.tagName === 'A') {
+                templateEl.setAttribute('href', previewEl.getAttribute('href'));
              }
         });
 
