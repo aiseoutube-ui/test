@@ -249,96 +249,7 @@
     </b:section>
 
     <script>
-    //<![CDATA[
-    function InjectedScript() {
-        // Menu movil
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
-
-        if(mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                iconOpen.classList.toggle('hidden');
-                iconClose.classList.toggle('hidden');
-            });
-        }
-
-        // Acordeon
-        const accordionContainer = document.getElementById('accordion-container');
-        if (accordionContainer) {
-            const videoDisplayArea = document.getElementById('video-display-area');
-            const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
-            const videoContainers = videoDisplayArea.querySelectorAll('.video-container');
-            accordionContainer.addEventListener('click', function(e) {
-                const header = e.target.closest('.accordion-header');
-                if (!header) return;
-                const currentItem = header.parentElement;
-                const targetVideoId = currentItem.getAttribute('data-target');
-                accordionItems.forEach(item => {
-                    if (item === currentItem) { item.classList.toggle('active'); }
-                    else { item.classList.remove('active'); }
-                });
-                videoContainers.forEach(video => {
-                    if (video.id === targetVideoId) { video.classList.remove('hidden'); }
-                    else { video.classList.add('hidden'); }
-                });
-            });
-        }
-
-        // Pestañas (Tabs)
-        const tabsContainer = document.getElementById('tabs-container');
-        if (tabsContainer) {
-            const tabButtons = tabsContainer.querySelectorAll('.tab-button');
-            const tabPanels = tabsContainer.querySelectorAll('.tab-panel');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetPanelId = this.getAttribute('data-target');
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    tabPanels.forEach(panel => {
-                        if (panel.id === targetPanelId) {
-                            panel.classList.remove('hidden');
-                            panel.classList.add('grid');
-                        } else {
-                            panel.classList.add('hidden');
-                            panel.classList.remove('grid');
-                        }
-                    });
-                });
-            });
-        }
-
-        // Video Interactivo
-        const videoIframe = document.getElementById('hero-video');
-        if (videoIframe) {
-            try {
-                const player = new Vimeo.Player(videoIframe);
-                const overlay = document.getElementById('video-overlay');
-
-                overlay.addEventListener('click', function() {
-                    player.setMuted(false);
-                    player.setVolume(0.7);
-                    player.play();
-                    overlay.style.opacity = '0';
-                    player.setControls(true);
-                });
-
-                player.on('pause', function() {
-                    overlay.style.opacity = '1';
-                });
-                 player.on('ended', function() {
-                    overlay.style.opacity = '1';
-                });
-            } catch (e) {
-                console.warn("Vimeo Player API not available in this context or failed to initialize.", e);
-                 const overlay = document.getElementById('video-overlay');
-                 if(overlay) overlay.innerHTML = "<p class='text-white text-xs p-2 bg-red-500 rounded'>Video interactivity disabled in preview.</p>";
-            }
-        }
-    }
-    //]]>
+    // This script is for the editor's functionality, not the final template
     <\/script>
 </body>
 </html>`;
@@ -368,6 +279,10 @@
         'logo-client-1': { type: 'src', label: 'Logo Cliente 1 (URL)' },
         'logo-client-2': { type: 'src', label: 'Logo Cliente 2 (URL)' },
         'logo-client-3': { type: 'src', label: 'Logo Cliente 3 (URL)' },
+        'logo-client-4': { type: 'src', label: 'Logo Cliente 4 (URL)' },
+        'logo-client-5': { type: 'src', label: 'Logo Cliente 5 (URL)' },
+        'logo-client-6': { type: 'src', label: 'Logo Cliente 6 (URL)' },
+        'logo-client-7': { type: 'src', label: 'Logo Cliente 7 (URL)' },
         'products-title': { type: 'text', label: 'Título Sección Productos' },
         'accordion-title-1': { type: 'text', label: 'Acordeón 1 - Título' },
         'accordion-desc-1': { type: 'text', label: 'Acordeón 1 - Descripción' },
@@ -403,7 +318,7 @@
     const loader = document.getElementById('loader');
     const fieldsContainer = document.getElementById('fields-container');
 
-    // This is the function that runs inside the iframe
+    // This is the function that will be injected into the final template
     const InjectedScript = function() {
         // Menu movil
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -511,9 +426,9 @@
             label.className = 'block font-semibold text-gray-300 mb-1';
             label.textContent = config.label;
             mainInput = document.createElement('textarea');
-            mainInput.value = el.textContent;
+            mainInput.value = el.innerHTML;
             mainInput.rows = el.tagName.toLowerCase().startsWith('h') ? 3 : 2;
-            mainInput.addEventListener('input', () => { el.textContent = mainInput.value; });
+            mainInput.addEventListener('input', () => { el.innerHTML = mainInput.value; });
             fieldWrapper.appendChild(label);
             fieldWrapper.appendChild(mainInput);
 
@@ -526,7 +441,6 @@
             mainInput.value = el.src;
             mainInput.addEventListener('input', (e) => {
                 el.src = e.target.value;
-                // --- SYNC CAROUSEL CLONE ---
                 if (elementId.startsWith('logo-client-')) {
                     const cloneId = elementId + '-clone';
                     const cloneEl = iframeDoc.getElementById(cloneId);
@@ -542,7 +456,6 @@
         fieldsContainer.appendChild(fieldWrapper);
         mainInput.focus();
 
-        // If the element is a link, add a second field for the URL
         if (el.tagName === 'A') {
             const linkFieldWrapper = document.createElement('div');
             const linkLabel = document.createElement('label');
@@ -618,7 +531,6 @@
     window.addEventListener('load', () => {
         let previewHTML = templateXML;
 
-        // Clean the template for browser rendering
         previewHTML = previewHTML.replace(/<\?xml[^>]*\?>\n?/, '');
         previewHTML = previewHTML.replace(/<html[^>]*>/, '<html>');
         previewHTML = previewHTML.replace(/<b:skin><!\[CDATA\[/, '<style>');
@@ -627,8 +539,6 @@
         previewHTML = previewHTML.replace(/<b:includable[^>]*>[\s\S]*?<\/b:includable>/g, '');
         previewHTML = previewHTML.replace(/<b:widget-settings>[\s\S]*?<\/b:widget-settings>/g, '');
 
-        // Inject script for preview functionality
-        // This is a much more robust way to do it.
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
         iframeDoc.open();
         iframeDoc.write(previewHTML);
@@ -653,7 +563,6 @@
 
         Object.keys(editableElementsConfig).forEach(id => {
              const previewEl = iframeDoc.getElementById(id);
-             // Use querySelector for robustness with XML docs
              const templateEl = finalDoc.querySelector(`*[id="${id}"]`);
 
              if (!previewEl || !templateEl) {
@@ -664,19 +573,16 @@
              const config = editableElementsConfig[id];
 
              if(config.type === 'text') {
-                templateEl.textContent = previewEl.textContent;
+                templateEl.innerHTML = previewEl.innerHTML;
              } else if (config.type === 'src') {
                 templateEl.setAttribute('src', previewEl.getAttribute('src'));
              }
 
-             // Handle links separately to ensure href is always updated
              if (previewEl.tagName === 'A') {
                 templateEl.setAttribute('href', previewEl.getAttribute('href'));
              }
         });
 
-        // --- FIX FOR CAROUSEL ---
-        // Manually sync the duplicated logos
         for (let i = 1; i <= 7; i++) {
             const originalLogoInPreview = iframeDoc.getElementById(`logo-client-${i}`);
             if (originalLogoInPreview) {
@@ -685,6 +591,28 @@
                 if (cloneElInTemplate) {
                     cloneElInTemplate.setAttribute('src', originalLogoInPreview.getAttribute('src'));
                 }
+            }
+        }
+
+        const scriptContent = InjectedScript.toString();
+        const scriptToInject = `<script type='text/javascript'>\n//<![CDATA[\n` +
+                               `(${scriptContent})();` +
+                               `\n//]]>\n<\/script>`;
+
+        const html1Widget = finalDoc.querySelector("b\\:widget[id='HTML1'], widget[id='HTML1']");
+        if (html1Widget) {
+            let settingNode;
+            const settings = html1Widget.getElementsByTagName('b:widget-setting');
+            for(let i=0; i < settings.length; i++) {
+                if(settings[i].getAttribute('name') === 'content') {
+                    settingNode = settings[i];
+                    break;
+                }
+            }
+            if(settingNode) {
+                while(settingNode.firstChild) { settingNode.removeChild(settingNode.firstChild); }
+                const cdata = finalDoc.createCDATASection(scriptToInject);
+                settingNode.appendChild(cdata);
             }
         }
 
