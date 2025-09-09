@@ -249,7 +249,8 @@
     </b:section>
 
     <script>
-    // This script is for the editor's functionality, not the final template
+    // This script is intentionally left blank because the InjectedScript below
+    // is now used for both the preview and the final template injection.
     <\/script>
 </body>
 </html>`;
@@ -318,7 +319,6 @@
     const loader = document.getElementById('loader');
     const fieldsContainer = document.getElementById('fields-container');
 
-    // This is the function that will be injected into the final template
     const InjectedScript = function() {
         // Menu movil
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -594,10 +594,8 @@
             }
         }
 
-        const scriptContent = InjectedScript.toString();
-        const scriptToInject = `<script type='text/javascript'>\n//<![CDATA[\n` +
-                               `(${scriptContent})();` +
-                               `\n//]]>\n<\/script>`;
+        // --- SCRIPT INJECTION ---
+        const scriptToInject = `(${InjectedScript.toString()})();`;
 
         const html1Widget = finalDoc.querySelector("b\\:widget[id='HTML1'], widget[id='HTML1']");
         if (html1Widget) {
